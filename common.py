@@ -8,7 +8,6 @@ from torch.utils.data import Dataset
 
 
 class RMSNorm(nn.Module):
-
     def __init__(self, dim, eps=1e-6):
         super().__init__()
         self.eps = eps
@@ -42,7 +41,7 @@ def build_channel_positions(ch_names, pos_bank):
                 f"Electrode {raw!r} (parsed from a CHB-MIT channel name) was not "
                 f"found in REVE's position bank. First 15 known names: {known_names[:15]}. "
                 "This usually means a naming-convention mismatch (e.g. old vs new "
-                "10-20 nomenclature), print pos_bank.get_all_positions() and compare."
+                "10-20 nomenclature) -- print pos_bank.get_all_positions() and compare."
             )
         return lookup[key]
 
@@ -67,7 +66,6 @@ def reve_features(model, eeg, pos):
 
 
 class WindowDataset(Dataset):
-
     def __init__(self, X, y):
         self.X = torch.from_numpy(X)
         self.y = torch.from_numpy(y).long()
@@ -80,7 +78,6 @@ class WindowDataset(Dataset):
 
 
 def make_collate_fn(positions):
-
     def collate(batch):
         xb = torch.stack([b[0] for b in batch])
         yb = torch.stack([b[1] for b in batch])
@@ -117,3 +114,4 @@ def evaluate_model(model, loader, device):
         "auroc": auroc,
     }
     return {"y_true": y_true, "y_pred": y_pred, "y_prob": y_prob}, metrics
+
