@@ -8,7 +8,6 @@ import numpy as np
 mne.set_log_level("ERROR")
 
 TARGET_SFREQ = 200
-
 WINDOW_S = 10
 PREICTAL_LEAD_S = 300
 
@@ -154,3 +153,4 @@ if __name__ == "__main__":
     ap.add_argument("--out", default="data/chb01_windows.npz")
     args = ap.parse_args()
     build_dataset(args.data_dir, "chb01-summary.txt", args.out)
+
