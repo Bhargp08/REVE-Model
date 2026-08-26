@@ -1,10 +1,11 @@
 import contextlib
 import sys
 import types
-
 import torch
 
+
 if not hasattr(torch.nn, "attention"):
+
     _fake = types.ModuleType("torch.nn.attention")
 
     class SDPBackend:
@@ -18,5 +19,6 @@ if not hasattr(torch.nn, "attention"):
 
     _fake.SDPBackend = SDPBackend
     _fake.sdpa_kernel = sdpa_kernel
+
     sys.modules["torch.nn.attention"] = _fake
     torch.nn.attention = _fake
