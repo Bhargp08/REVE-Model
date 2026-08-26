@@ -1,6 +1,6 @@
 import argparse
 
-import compat
+import PytorchVersion  # noqa: F401
 import numpy as np
 import torch
 import torch.nn as nn
@@ -75,7 +75,7 @@ def main():
         raise RuntimeError(
             f"Only one class present in {args.data} (interictal={class_counts[0]}, "
             f"preictal={class_counts[1]}). This happens when only one/a few chb01 "
-            f"files have been synced so far -- re-run preprocessing.py once more of "
+            f"files have been synced so far -- re-run Preprocessing.py once more of "
             f"chb01 is on disk, then retry."
         )
 
